@@ -1,5 +1,5 @@
 export class CreateCrudDto{
-
+   
    readonly name: string;
    readonly description: string;
    readonly image: string;

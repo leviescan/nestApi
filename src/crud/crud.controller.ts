@@ -9,39 +9,32 @@ export class CrudController {
     constructor( private readonly crudService:CrudService){}
 
     @Post('/create')
-  async createUser(@Res() r,@Body() dataUser: User){
-    
+    async createUser(@Res() r,@Body() dataUser: User){
     const user = await this.crudService.createUser(dataUser);
-
     return r.status(HttpStatus.OK).json({
-      message: 'con ok',
+      message: 'user created successfuly',
       user
-  });    
+  });
   }
 
   @Get('/read')
- async readUsers(@Res() r,){
+  async readUsers(@Body() dataUser: User){
     const user = await this.crudService.readUsers();
+    if(!user) throw new NotFoundException('usuario inexistente');
 
-    return r.status(HttpStatus.OK).json({
-      message: 'con ok',
-      user
-  }); 
+    return user;
+   
   }
   
   
 
   @Get('/read/:id')
-  async readUser(@Res() r, @Param('id') id:string){
+  async readUser( @Param('id') id:string){
 
     const user = await this.crudService.readUser(id);
-
     if(!user) throw new NotFoundException('usuario inexistente');
 
-    return r.status(HttpStatus.OK).json({
-      message: 'con ok',
-      user
-  }); 
+   return user;
   }
 
   @Put(':id')
