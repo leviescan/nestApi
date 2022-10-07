@@ -10,19 +10,19 @@ export class CommentsService {
     @InjectModel('comment') private readonly commentModel: Model<CommentDocument>){}
 
     async createComment(comment: Comment): Promise<Comment>{
-      const createdComment =new this.commentModel(comment)
+      const createdComment = new this.commentModel(comment)
       return await createdComment.save();
     }
 
   async readComments(){
    return await this.commentModel.find({})
     .then((comment)=>{return comment})
-    .catch((er)=>console.log(er))
+    .catch((er)=>(er))
   }
   async readComment(id:string) {
    return await this.commentModel.findById(id)
    .then((comment)=>{return comment})
-   .catch((er)=>console.log(er))
+   .catch((er)=>(er))
   }
 
  async updateComment(id:string, commentData:Comment):Promise<Comment>{
