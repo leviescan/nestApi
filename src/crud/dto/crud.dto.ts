@@ -5,4 +5,4 @@ export class CreateCrudDto{
    readonly image: string;
    readonly price: number;
    readonly createdDate: Date;
-}
+} 

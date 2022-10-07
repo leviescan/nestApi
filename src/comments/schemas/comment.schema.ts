@@ -9,7 +9,7 @@ export class Comment {
   @Prop()
   name: string;
 
-  @Prop()
+  @Prop({ required: true })
   description: string;
 
   @Prop({default:Date.now})
